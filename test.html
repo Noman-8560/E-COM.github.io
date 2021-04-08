@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test doc</title>
+</head>
+<style>
+    .navigation {
+	 height: 70px;
+	 color: #fff !important;
+}
+ .brand {
+	 position: absolute;
+	 padding-left: 20px;
+	 float: left;
+	 line-height: 70px;
+	 text-transform: uppercase;
+	 font-size: 1.4em;
+}
+ .brand a, .brand a:visited {
+	 color: #000000;
+	 text-decoration: none;
+}
+ .nav-container {
+	 max-width: 1000px;
+	 margin: 0 auto;
+}
+ nav {
+	 float: right;
+}
+ nav ul {
+	 list-style: none;
+	 margin: 0;
+	 padding: 0;
+}
+ nav ul li {
+	 float: left;
+	 position: relative;
+}
+ nav ul li a, nav ul li a:visited {
+	 display: block;
+	 padding: 0 20px;
+	 line-height: 70px;
+     color: #fff;
+	 text-decoration: none;
+}
+
+.drop-list a {
+     color: white !important;
+	 padding: 15px;
+	 line-height: 20px;
+}
+ .nav-dropdown {
+     min-width: 190px;
+     background-color: black;
+	 position: absolute;
+	 display: none;
+	 z-index: 1;
+	 box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+.nav-dropdown::before{
+    content: '';
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 20px solid black;
+    top: -20px;
+    position: absolute;
+    left: 20%;
+}
+ 
+</style>
+<body>
+    <section class="navigation">
+        <div class="nav-container">
+          <div class="brand">
+            <a href="#!">Logo</a>
+          </div>
+          <nav>
+            <ul class="nav-list">
+              <li>
+                <a href="#!">Services</a>
+                <ul class="nav-dropdown">
+                  <li class="drop-list">
+                    <a href="#!">Web Design</a>
+                  </li>
+                  <li>
+                    <a href="#!">Web Development</a>
+                  </li>
+                  <li>
+                    <a href="#!">Graphic Design</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+      <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script>
+          (function($) { // Begin jQuery
+                $(function() { // DOM ready
+                    // If a link has a dropdown, add sub menu toggle.
+                    $('nav ul li a:not(:only-child)').click(function(e) {
+                    $(this).siblings('.nav-dropdown').toggle();
+                    // Close one dropdown when selecting another
+                    $('.nav-dropdown').not($(this).siblings()).hide();
+                    e.stopPropagation();
+                    });
+                    // Clicking away from dropdown will remove the dropdown class
+                    $('html').click(function() {
+                    $('.nav-dropdown').hide();
+                    });
+                    // Toggle open and close nav styles on click
+                    $('#nav-toggle').click(function() {
+                    $('nav ul').slideToggle();
+                    });
+                    // Hamburger to X toggle
+                    $('#nav-toggle').on('click', function() {
+                    this.classList.toggle('active');
+                    });
+                }); // end DOM ready
+            })(jQuery); // end jQuery
+      </script>
+</body>
+</html>
